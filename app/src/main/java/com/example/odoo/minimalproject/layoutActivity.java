@@ -1,5 +1,6 @@
 package com.example.odoo.minimalproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -21,23 +22,26 @@ import java.util.ArrayList;
 public class layoutActivity extends AppCompatActivity{
     ArrayList<mhs> listmhs;
     private static final String TAG = "layoutActivity";
-    private DatabaseReference mRef;
+    private DatabaseReference mRef,findMhsByNim;
     TextView nim,nama;
+    String outputNim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout);
-        new statusBarConfig().StatusBarLightMode(this);
-        mRef = FirebaseDatabase.getInstance().getReference().child("users");
-        mRef.addValueEventListener(new ValueEventListener() {
+        Intent i = getIntent();
+        Bundle bd = i.getExtras();
+        outputNim = (String) bd.get("nim");
+
+        mRef = FirebaseDatabase.getInstance().getReference();
+        findMhsByNim = mRef.getRoot().child("users").child(outputNim);
+        findMhsByNim.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listmhs = new ArrayList<mhs>();
-                for (DataSnapshot messageSnapshot: dataSnapshot.getChildren()) {
                     mhs mahasiswa = new mhs();
-                    mahasiswa = messageSnapshot.getValue(mhs.class);
+                    mahasiswa = dataSnapshot.getValue(mhs.class);
                     listmhs.add(mahasiswa);
-                }
                 layoutAdapter la = new layoutAdapter(layoutActivity.this, listmhs);
                 ListView listView = findViewById(R.id.id_list);
                 listView.setAdapter(la);
