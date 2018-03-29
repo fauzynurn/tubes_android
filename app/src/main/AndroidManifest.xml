@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".layoutActivity"></activity>
-        <activity android:name=".statusBarConfig"></activity>
         <activity android:name=".layoutAdapter"></activity>
         <activity android:name=".mhs"></activity>
     </application>
