@@ -25,7 +25,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/nunitomedium"
-            android:text="Selamat Datang"
+            android:text="Salam Bahtera!"
             android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="30dp"
@@ -67,5 +67,6 @@
             android:src="@drawable/image_pressable" />
 
     </LinearLayout>
+
 
 </RelativeLayout>

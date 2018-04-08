@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view"
+    android:layout_width="260dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    card_view:cardCornerRadius="6dp"
+    android:layout_marginBottom="15dp">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/fl_shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/date_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_shape"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/usmedium"
+            tools:text="Order date" />
+
+        <TextView
+            android:id="@+id/the_orders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rectangle_shape"
+            android:fontFamily="@font/agregular"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            tools:text="The orders" />
+    </RelativeLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</android.support.v7.widget.CardView>
