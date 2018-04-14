@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import static android.app.Dialog.*;
@@ -19,8 +20,7 @@ import static android.app.Dialog.*;
 public class CustomDialog extends Dialog implements View.OnClickListener{
 
     public TextView name;
-    public Button go;
-    public Button cancel;
+    public ImageView directToHome;
     private String text;
     public CustomDialog(Activity c) {
         super(c);

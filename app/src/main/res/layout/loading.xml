@@ -7,23 +7,23 @@
     android:orientation="horizontal"
     android:gravity="center">
 
-    <com.victor.loading.rotate.RotateLoading
-        android:id="@+id/rotateloading"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_above="@+id/textView2"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
-        app:loading_color="#ffffff"
-        app:loading_width="5dp" />
+        android:layout_marginBottom="103dp"
+        android:scaleType="centerInside"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="material_wave_loading.json"
+        app:lottie_loop="true" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="145dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
         android:text="Retrieving data from database.."
         android:textColor="@color/white"
         android:textSize="18dp" />

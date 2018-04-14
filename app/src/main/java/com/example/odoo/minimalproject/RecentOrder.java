@@ -7,32 +7,23 @@ import java.util.Date;
  */
 
 public class RecentOrder {
-    private String orderDate;
-    private String foodOrders;
-    private boolean showShimmer;
+    private String orderedDate;
+    private String orderedMenu;
 
 
-    public String getOrderDate() {
-        return orderDate;
+    public String getOrderedDate() {
+        return orderedDate;
     }
 
-    public void setOrderDate(String orderDate) {
-        this.orderDate = orderDate;
+    public void setOrderedDate(String orderedDate) {
+        this.orderedDate = orderedDate;
     }
 
-    public String getFoodOrders() {
-        return foodOrders;
+    public String getOrderedMenu() {
+        return orderedMenu;
     }
 
-    public void setFoodOrders(String foodOrders) {
-        this.foodOrders = foodOrders;
-    }
-
-    public boolean isShowShimmer() {
-        return showShimmer;
-    }
-
-    public void setShowShimmer(boolean showShimmer) {
-        this.showShimmer = showShimmer;
+    public void setOrderedMenu(String orderedMenu) {
+        this.orderedMenu = orderedMenu;
     }
 }

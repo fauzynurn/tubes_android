@@ -17,11 +17,9 @@ public class loading extends Dialog implements View.OnClickListener{
     public Activity a;
     private TextView name;
     private String text;
-    RotateLoading rl;
-    public loading(Activity c, String x) {
+    public loading(Activity c) {
         super(c);
         this.a =  c;
-        text = x;
     }
 
     @Override
@@ -29,11 +27,6 @@ public class loading extends Dialog implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.loading);
-        rl = findViewById(R.id.rotateloading);
-    }
-
-    public void playLoading(){
-        rl.start();
     }
 
     @Override

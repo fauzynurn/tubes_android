@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="310dp"
-    android:layout_height="410dp"
-    android:background="@drawable/popup_bg">
+    android:layout_width="wrap_content"
+    android:layout_height="400dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:background="@mipmap/topbar_bg">
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:layout_width="215dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/directToHome"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="54dp"
+        android:layout_marginBottom="94dp"
         android:fontFamily="@font/nunitomedium"
-        android:text="Now, you can start order your foods and drinks"
+        android:text="We will direct you to the home page. Happy fooding :)"
+        android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="13sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/output"
@@ -22,31 +25,40 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/textView3"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="34dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="10dp"
         android:text="Heyhow!"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/directToHome"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="14dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginRight="6dp"
-        android:background="@drawable/positive_button" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/output"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/mentonesb"
+        android:text="We found you!"
+        android:textColor="#48E262"
+        android:textSize="25sp" />
 
-    <Button
-        android:id="@+id/cancel"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_below="@+id/textView3"
-        android:background="@drawable/cancel_button" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/check_animation"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-45dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="centerInside"
+        app:lottie_rawRes="@raw/checked_done"
+        app:lottie_loop="true" />
+
+    <ImageView
+        android:id="@+id/directToHome"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:src="@drawable/okay_btn_layout" />
 
 </RelativeLayout>
