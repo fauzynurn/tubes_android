@@ -1,7 +1,5 @@
 package com.example.odoo.minimalproject;
 
-import java.util.Date;
-
 /**
  * Created by odoo on 4/8/18.
  */
@@ -9,6 +7,7 @@ import java.util.Date;
 public class RecentOrder {
     private String orderedDate;
     private String orderedMenu;
+    private String status;
 
 
     public String getOrderedDate() {
@@ -25,5 +24,13 @@ public class RecentOrder {
 
     public void setOrderedMenu(String orderedMenu) {
         this.orderedMenu = orderedMenu;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

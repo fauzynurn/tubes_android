@@ -8,5 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
     </style>
-
+    <style name="green_style" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlHighlight">#86E797</item>
+        <item name="colorButtonNormal">#3DD957</item>
+    </style>
+    <style name="red_style" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorControlHighlight">#FF5656</item>
+        <item name="colorButtonNormal">#FF0000</item>
+    </style>
 </resources>

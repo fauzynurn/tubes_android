@@ -16,6 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".FoodListActivity"></activity>
+        <activity android:name=".HomeBaseActivity"></activity>
     </application>
 
 </manifest>

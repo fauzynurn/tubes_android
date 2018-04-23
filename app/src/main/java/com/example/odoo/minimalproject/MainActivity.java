@@ -59,45 +59,47 @@ public class MainActivity extends AppCompatActivity {
         moveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                lottie.setVisibility(View.VISIBLE);
-                lottie.playAnimation();
-                mRef = FirebaseDatabase.getInstance().getReference().getRoot().child("users").child(nim.getText().toString());
-                mRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        lottie.cancelAnimation();
-                        lottie.setVisibility(View.INVISIBLE);
-                        nimContainer = nim.getText().toString();
-                        if(!dataSnapshot.exists() || nimContainer.isEmpty()){
-                            String toastText = "NIM tidak terdaftar di database.";
-                            Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
-                        }else {
-                            mahasiswa = dataSnapshot.getValue(mhs.class);
-                            cd = new CustomDialog(MainActivity.this);
-                            cd.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            cd.setContentView(R.layout.identify_dialog);
-                            lottie1 = cd.findViewById(R.id.check_animation);
-                            lottie1.setRepeatCount(1);
-                            lottie1.playAnimation();
-                            cd.name = cd.findViewById(R.id.output);
-                            cd.changeDefaultName(mahasiswa.getNama());
-                            cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                            cd.setCancelable(true);
-                            cd.show();
-                            cd.directToHome = cd.findViewById(R.id.directToHome);
-                            cd.directToHome.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent i = new Intent(MainActivity.this, HomeActivity.class);
-                                    startActivity(i);
-                                }
-                            });
-                        }
-                    }
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                    }
-                });
+                Intent i = new Intent(MainActivity.this, HomeBaseActivity.class);
+                startActivity(i);
+//                lottie.setVisibility(View.VISIBLE);
+//                lottie.playAnimation();
+//                mRef = FirebaseDatabase.getInstance().getReference().getRoot().child("users").child(nim.getText().toString());
+//                mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        lottie.cancelAnimation();
+//                        lottie.setVisibility(View.INVISIBLE);
+//                        nimContainer = nim.getText().toString();
+//                        if(!dataSnapshot.exists() || nimContainer.isEmpty()){
+//                            String toastText = "NIM tidak terdaftar di database.";
+//                            Toast.makeText(getApplicationContext(), toastText, Toast.LENGTH_SHORT).show();
+//                        }else {
+//                            mahasiswa = dataSnapshot.getValue(mhs.class);
+//                            cd = new CustomDialog(MainActivity.this);
+//                            cd.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                            cd.setContentView(R.layout.identify_dialog);
+//                            lottie1 = cd.findViewById(R.id.check_animation);
+//                            lottie1.setRepeatCount(1);
+//                            lottie1.playAnimation();
+//                            cd.name = cd.findViewById(R.id.output);
+//                            cd.changeDefaultName(mahasiswa.getNama());
+//                            cd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                            cd.setCancelable(true);
+//                            cd.show();
+//                            cd.directToHome = cd.findViewById(R.id.directToHome);
+//                            cd.directToHome.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    Intent i = new Intent(MainActivity.this, HomeActivity.class);
+//                                    startActivity(i);
+//                                }
+//                            });
+//                        }
+//                    }
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//                    }
+//                });
             }
             });
             }

@@ -7,4 +7,13 @@
     <color name="grey">#F0F0F0</color>
     <color name="black">#000000</color>
     <color name="thisblue">#47D4AE</color>
+    <color name="thisorange">#ffae00</color>
+    <color name="rose">#ff0037</color>
+
+    <integer-array name="custom_tab_colors">
+        <item>@color/thisblue</item>
+        <item>@color/thisorange</item>
+        <item>@color/rose</item>
+    </integer-array>
+
 </resources>

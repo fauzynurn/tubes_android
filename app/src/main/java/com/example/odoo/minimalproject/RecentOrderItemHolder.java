@@ -6,11 +6,12 @@ import android.widget.TextView;
 
 public class RecentOrderItemHolder extends RecyclerView.ViewHolder {
 
-    public TextView dateOrder, theOrders;
+    public TextView dateOrder, theOrders, status;
 
     public RecentOrderItemHolder(View view) {
         super(view);
         dateOrder = view.findViewById(R.id.ordered_date);
         theOrders = view.findViewById(R.id.menu_name);
+        status = view.findViewById(R.id.status);
     }
 }

@@ -25,10 +25,11 @@ public class RecentOrderAdapter extends RecyclerView.Adapter<RecentOrderItemHold
 
     @Override
     public void onBindViewHolder(RecentOrderItemHolder holder, int position) {
-            RecentOrder item = RecentOrderList.get(position);
+        RecentOrder item = RecentOrderList.get(position);
         holder.theOrders.setText(item.getOrderedMenu());
-            holder.dateOrder.setText(item.getOrderedDate());
-        }
+        holder.dateOrder.setText(item.getOrderedDate());
+        holder.status.setText(item.getStatus());
+    }
 
 
     @Override

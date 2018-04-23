@@ -39,17 +39,17 @@ public class DatabaseAccess {
         }
     }
 
-//    public List<menus> getMenusFromDatabase(){
-//        List<menus> menuList = new ArrayList();
-//        c = db.rawQuery("SELECT menuname,price,menuimage FROM menu",null);
-//        menus menu;
-//        while(c.moveToNext()){
-//            menu = new menus();
-//            menu.setMenuName(c.getString(c.getColumnIndex("menuname")));
-//            menu.setImgMenuName(c.getString(c.getColumnIndex("menuimage")));
-//            menu.setPrice(c.getInt(c.getColumnIndex("price")));
-//            menuList.add(menu);
-//        }
-//        return menuList;
-//    }
+    public List<Menu> getMenusFromDatabase(){
+        List<Menu> menuList = new ArrayList();
+        c = db.rawQuery("SELECT menuname,price,menuimage FROM menu",null);
+        Menu menu1;
+        while(c.moveToNext()){
+            menu1 = new Menu();
+            menu1.setMeal(c.getString(c.getColumnIndex("menuname")));
+            menu1.setPrice(c.getInt(c.getColumnIndex("price")));
+            menu1.setImgSrc(c.getString(c.getColumnIndex("menuimage")));
+            menuList.add(menu1);
+        }
+        return menuList;
+    }
 }
