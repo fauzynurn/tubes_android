@@ -9,21 +9,20 @@ import android.view.ViewGroup;
 
 import com.daimajia.swipe.SwipeLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuItemHolder> {
-    private Context c;
     private List<Menu> menuList;
 
-    public MenuAdapter(List<Menu> menuList, Context context) {
+    public MenuAdapter(ArrayList<Menu> menuList) {
         this.menuList = menuList;
-        c = context;
     }
 
     @Override
     public MenuItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.food_order_item, parent, false);
+                .inflate(R.layout.menu_item_layout, parent, false);
 
         return new MenuItemHolder(itemView);
     }
@@ -33,7 +32,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuItemHolder> {
         Menu item = menuList.get(position);
         holder.foodName.setText(item.getMeal());
         holder.price.setText(String.valueOf(item.getPrice()));
-        holder.imgSrc.setImageResource(c.getResources().getIdentifier(item.getImgSrc(), "drawable", "com.example.odoo.minimalproject"));
+//        holder.imgSrc.setImageResource(c.getResources().getIdentifier(item.getImgSrc(), "drawable", "com.example.odoo.minimalproject"));
 
         holder.swipeLayout.setShowMode(SwipeLayout.ShowMode.PullOut);
 

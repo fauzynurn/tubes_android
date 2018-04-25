@@ -1,15 +1,12 @@
 package com.example.odoo.minimalproject;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
@@ -24,11 +21,18 @@ import java.util.List;
 public class HomeBaseActivity extends AppCompatActivity{
     SmartTabLayout MyTab;
     ViewPager MyPage;
+    boolean isThemed;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_base_layout);
+        statusBarSetter statbarsetter = new statusBarSetter();
+        getWindow().setStatusBarColor(Color.WHITE);
+        isThemed = statbarsetter.setMiuiStatusBarIconDarkMode(HomeBaseActivity.this, true);
+        if (!isThemed) {
+            getWindow().setStatusBarColor(Color.parseColor("#47D4AE"));
+        }
 
         MyTab = findViewById(R.id.view_page_tab);
         MyPage = findViewById(R.id.MyPage);
@@ -40,7 +44,7 @@ public class HomeBaseActivity extends AppCompatActivity{
     public void SetUpViewPager (ViewPager viewpage){
         MyViewPageAdapter Adapter = new MyViewPageAdapter(getSupportFragmentManager());
 
-        Adapter.AddFragmentPage(new AwalFragment(), "Home");
+        Adapter.AddFragmentPage(new HomeFragment(), "Home");
         Adapter.AddFragmentPage(new MenuFragment(), "Menu");
         Adapter.AddFragmentPage(new FavouritesActivity(), "Favourites");
         //We Need Fragment class now

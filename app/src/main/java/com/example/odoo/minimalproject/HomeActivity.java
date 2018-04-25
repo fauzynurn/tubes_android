@@ -94,8 +94,8 @@ public class HomeActivity extends AppCompatActivity {
 //                View bsv = getLayoutInflater().inflate(R.layout.add_rice_layout,null);
 //                bsd.setContentView(bsv);
 //                bsd.show();
-                Intent i = new Intent(HomeActivity.this, FoodListActivity.class);
-                startActivity(i);
+//                Intent i = new Intent(HomeActivity.this, FoodListActivity.class);
+//                startActivity(i);
             }
         });
 //        order = parentView.findViewById(R.id.post_order);
