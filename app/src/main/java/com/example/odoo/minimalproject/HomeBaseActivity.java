@@ -1,6 +1,7 @@
 package com.example.odoo.minimalproject;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -8,7 +9,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.mancj.slideup.SlideUp;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 import java.util.ArrayList;
@@ -20,8 +26,11 @@ import java.util.List;
 
 public class HomeBaseActivity extends AppCompatActivity{
     SmartTabLayout MyTab;
-    ViewPager MyPage;
+    ViewPagerConfig MyPage;
     boolean isThemed;
+    ImageView cartIcon;
+    BottomSheetDialog bsd;
+    PageListener pl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,6 +45,17 @@ public class HomeBaseActivity extends AppCompatActivity{
 
         MyTab = findViewById(R.id.view_page_tab);
         MyPage = findViewById(R.id.MyPage);
+        MyPage.disableScroll(true);
+        pl = new PageListener();
+        MyPage.setOnPageChangeListener(pl);
+        cartIcon = findViewById(R.id.cart_icon);
+        cartIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                bsd = new BottomSheetDialog();
+                bsd.show(getSupportFragmentManager(),"Bottom Sheet");
+            }
+        });
 
         SetUpViewPager(MyPage);
         MyTab.setViewPager(MyPage);
@@ -46,7 +66,7 @@ public class HomeBaseActivity extends AppCompatActivity{
 
         Adapter.AddFragmentPage(new HomeFragment(), "Home");
         Adapter.AddFragmentPage(new MenuFragment(), "Menu");
-        Adapter.AddFragmentPage(new FavouritesActivity(), "Favourites");
+        Adapter.AddFragmentPage(new FavouritesActivity(), "About");
         //We Need Fragment class now
 
         viewpage.setAdapter(Adapter);
@@ -79,6 +99,17 @@ public class HomeBaseActivity extends AppCompatActivity{
         @Override
         public int getCount() {
             return 3;
+        }
+    }
+
+    private class PageListener extends ViewPager.SimpleOnPageChangeListener{
+        @Override
+        public void onPageSelected(int position) {
+            if(position != 1){
+                cartIcon.setVisibility(View.GONE);
+            }else{
+                cartIcon.setVisibility(View.VISIBLE);
+            }
         }
     }
 

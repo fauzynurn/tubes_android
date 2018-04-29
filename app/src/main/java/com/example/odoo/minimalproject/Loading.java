@@ -13,11 +13,11 @@ import com.victor.loading.rotate.RotateLoading;
  * Created by odoo on 4/4/18.
  */
 
-public class loading extends Dialog implements View.OnClickListener{
+public class Loading extends Dialog implements View.OnClickListener{
     public Activity a;
     private TextView name;
     private String text;
-    public loading(Activity c) {
+    public Loading(Activity c) {
         super(c);
         this.a =  c;
     }

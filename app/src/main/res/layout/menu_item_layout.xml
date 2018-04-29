@@ -20,9 +20,9 @@
             android:layout_height="32dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="9dp"
+            android:id="@+id/add_to_fav"
             android:src="@drawable/fav"/>
         <TextView
-            android:id="@+id/add_to_fav"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -37,11 +37,11 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginLeft="75dp"
+            android:id="@+id/add_to_cart"
             android:layout_marginTop="9dp"
             android:src="@drawable/service_bell"/>
 
         <TextView
-            android:id="@+id/add_to_fav"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

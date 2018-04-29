@@ -1,6 +1,11 @@
 package com.example.odoo.minimalproject;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,11 +13,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mancj.slideup.SlideUp;
 
 import java.util.ArrayList;
 
@@ -23,20 +30,43 @@ import java.util.ArrayList;
 public class MenuFragment extends Fragment{
     RecyclerView menuRecycler;
     private MenuAdapter menuAdapter;
+    ImageView addToCart;
     Menu rOrder;
+    UserCart uc;
     public MenuFragment(){};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View PageTree = inflater.inflate(R.layout.page_2, container, false);
+        View homeBaseLayout = inflater.inflate(R.layout.page_2, container, false);
         menuRecycler = PageTree.findViewById(R.id.menu_list);
-        ArrayList<Menu> menuItem = new ArrayList<>();
+        ArrayList<Menu> menuItem;
+        View menuItemView = getLayoutInflater().inflate(R.layout.menu_item_layout,null);
+
+
+//        obsInt.setOnIntegerChangeListener(new OnIntegerChangeListener() {
+//            @Override
+//            public void onIntegerChanged(int val) {
+//
+//            }
+//        });
+        uc = new UserCart();
         menuItem = fillDataDummy();
         menuAdapter = new MenuAdapter(menuItem);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         menuRecycler.setLayoutManager(mLayoutManager);
         menuRecycler.setItemAnimator(new DefaultItemAnimator());
         menuRecycler.setAdapter(menuAdapter);
+        addToCart = menuItemView.findViewById(R.id.add_to_cart);
+        addToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Menu dummy = new Menu();
+                dummy.setMeal("Dummy Food");
+                dummy.setPrice(12500);
+                uc.getUserOrder().add(dummy);
+            }
+        });
 //        mRef = FirebaseDatabase.getInstance().getReference().getRoot().child("users").child("161511049").child("orderedMenu");
 //        mRef.addValueEventListener(new ValueEventListener() {
 //            @Override

@@ -16,4 +16,7 @@
         <item name="colorControlHighlight">#FF5656</item>
         <item name="colorButtonNormal">#FF0000</item>
     </style>
+    <!--<style name="BottomBarTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+        <!--<item name="android:windowBackground">#0000</item>    -->
+    <!--</style>-->
 </resources>

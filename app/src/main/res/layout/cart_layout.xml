@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shape"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="43dp"
+            android:layout_marginTop="37dp"
+            android:fontFamily="@font/agbold"
+            android:text="x"
+            android:textColor="#282828"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/total_item"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="66dp"
+            android:layout_marginBottom="37dp"
+            android:layout_marginTop="37dp"
+            android:textColor="#282828"
+            android:fontFamily="@font/agbold"
+            android:text="items in Cart"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:id="@+id/textView4" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="0.7dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/total_item"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="35dp"
+            android:background="#262626"
+            android:id="@+id/view" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="37dp"
+            android:layout_alignParentTop="true"
+            android:textColor="#282828"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="43dp"
+            android:layout_marginRight="31dp"
+            android:id="@+id/total_price"
+            android:fontFamily="@font/agbold"
+            android:text="12k"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:overScrollMode="never"
+            android:id="@+id/cart_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="98dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginEnd="14dp"
+            android:scrollbars="vertical" />
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

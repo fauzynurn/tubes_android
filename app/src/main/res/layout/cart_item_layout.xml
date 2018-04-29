@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/usmedium"
+        android:id="@+id/the_menu"
+        android:textColor="@color/black"
+        android:text="Menu_name"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/usmedium"
+        android:id="@+id/description"
+        android:textColor="#606060"
+        android:text="description"
+        android:layout_marginTop="19dp"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/agbold"
+        android:id="@+id/total_price_per_item"
+        android:textColor="@color/black"
+        android:layout_marginTop="14dp"
+        android:text="0k"
+        android:layout_alignParentEnd="true"
+        android:textSize="18sp"/>
+
+</RelativeLayout>

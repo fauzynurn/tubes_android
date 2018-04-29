@@ -8,9 +8,6 @@ public class Menu {
     private String meal;
     private int price;
     private String imgSrc;
-    private boolean isRiceAllowed;
-    private boolean withRice = true;
-
 
     public String getMeal() {
         return meal;
@@ -34,21 +31,5 @@ public class Menu {
 
     public void setImgSrc(String imgSrc) {
         this.imgSrc = imgSrc;
-    }
-
-    public boolean isRiceAllowed() {
-        return isRiceAllowed;
-    }
-
-    public void setRiceAllowed(boolean riceAllowed) {
-        isRiceAllowed = riceAllowed;
-    }
-
-    public boolean isWithRice() {
-        return withRice;
-    }
-
-    public void setWithRice(boolean withRice) {
-        this.withRice = withRice;
     }
 }

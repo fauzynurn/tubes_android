@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     boolean isThemed;
     CustomDialog cd;
     String nimContainer;
-    mhs mahasiswa;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         statusBarSetter statbarsetter = new statusBarSetter();
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 //                            cd.directToHome.setOnClickListener(new View.OnClickListener() {
 //                                @Override
 //                                public void onClick(View view) {
-//                                    Intent i = new Intent(MainActivity.this, HomeActivity.class);
+//                                    Intent i = new Intent(MainActivity.this, HomeBaseActivity.class);
 //                                    startActivity(i);
 //                                }
 //                            });
