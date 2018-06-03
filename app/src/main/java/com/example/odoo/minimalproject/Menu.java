@@ -5,6 +5,7 @@ package com.example.odoo.minimalproject;
  */
 
 public class Menu {
+    private String id;
     private String meal;
     private int price;
     private String imgSrc;
@@ -31,5 +32,13 @@ public class Menu {
 
     public void setImgSrc(String imgSrc) {
         this.imgSrc = imgSrc;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

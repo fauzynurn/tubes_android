@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="33dp"
+        android:src="@drawable/carticon" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="66dp"
+        android:layout_marginTop="33dp"
+        android:src="@drawable/settings" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="27dp"
+        android:fontFamily="@font/nunitobold"
+        android:text="Recent Order"
+        android:textColor="@color/black"
+        android:textSize="26sp" />
+
+    <com.scalified.fab.ActionButton
+        android:id="@+id/add_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        fab:image="@drawable/fab_plus_icon"
+        fab:image_size="40dp"
+        fab:size="65dp"
+        fab:button_color="#0BC553"
+        fab:button_colorPressed="#0cd65a"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recent_order_list"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            android:overScrollMode="never"
+            android:scrollbars="vertical" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

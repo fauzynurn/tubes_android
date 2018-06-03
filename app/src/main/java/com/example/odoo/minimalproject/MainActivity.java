@@ -1,53 +1,29 @@
 package com.example.odoo.minimalproject;
 
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ClipDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.PopupWindow;
 
-import com.airbnb.lottie.LottieAnimationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.jaeger.library.StatusBarUtil;
-import com.victor.loading.rotate.RotateLoading;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     EditText nim;
     private DatabaseReference mRef;
-    LottieAnimationView lottie;
-    LottieAnimationView lottie1;
     boolean isThemed;
     CustomDialog cd;
+    PopupWindow pw;
     String nimContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         statusBarSetter statbarsetter = new statusBarSetter();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        lottie = findViewById(R.id.animation_view);
-        lottie.setVisibility(View.INVISIBLE);
         ImageView moveBtn = findViewById(R.id.move_button);
         nim = findViewById(R.id.inputNim);
         getWindow().setStatusBarColor(Color.WHITE);
@@ -58,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         moveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                Intent i = new Intent(MainActivity.this, HomeBaseActivity.class);
+                Intent i = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(i);
 //                lottie.setVisibility(View.VISIBLE);
 //                lottie.playAnimation();
@@ -89,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 //                            cd.directToHome.setOnClickListener(new View.OnClickListener() {
 //                                @Override
 //                                public void onClick(View view) {
-//                                    Intent i = new Intent(MainActivity.this, HomeBaseActivity.class);
+//                                    Intent i = new Intent(MainActivity.this, HomeActivity.class);
 //                                    startActivity(i);
 //                                }
 //                            });

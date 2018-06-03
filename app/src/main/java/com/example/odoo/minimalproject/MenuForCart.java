@@ -15,7 +15,7 @@ public class MenuForCart extends Menu{
 
     public void setMeal(String meal){
         super.setMeal(meal);
-        this.getMeal() = this.getMeal() + " " + "(" + "x" + this.qty + ")";
+//        this.getMeal() = this.getMeal() + " " + "(" + "x" + this.qty + ")";
     }
 
     public void setQty(int qty) {

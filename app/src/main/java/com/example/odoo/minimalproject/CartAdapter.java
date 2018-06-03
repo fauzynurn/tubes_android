@@ -24,7 +24,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartItemHolder> {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cart_item_layout, parent, false);
 
-        return new RecentOrderItemHolder(itemView);
+        return new CartItemHolder(itemView);
     }
 
     @Override

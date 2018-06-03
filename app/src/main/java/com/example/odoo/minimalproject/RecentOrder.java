@@ -1,12 +1,15 @@
 package com.example.odoo.minimalproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by odoo on 4/8/18.
  */
 
 public class RecentOrder {
     private String orderedDate;
-    private String orderedMenu;
+    private List<String> orderedMenu = new ArrayList<String>();
     private String status;
 
 
@@ -18,11 +21,11 @@ public class RecentOrder {
         this.orderedDate = orderedDate;
     }
 
-    public String getOrderedMenu() {
+    public List<String> getOrderedMenu() {
         return orderedMenu;
     }
 
-    public void setOrderedMenu(String orderedMenu) {
+    public void setOrderedMenu(List<String> orderedMenu) {
         this.orderedMenu = orderedMenu;
     }
 

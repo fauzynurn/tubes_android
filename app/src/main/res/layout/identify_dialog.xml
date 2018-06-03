@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="400dp"
+    android:id="@+id/popup"
+    android:layout_width="365dp"
+    android:layout_height="500dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
     android:background="@mipmap/topbar_bg">
@@ -10,9 +11,9 @@
         android:id="@+id/textView3"
         android:layout_width="215dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/output"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="94dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/nunitomedium"
         android:text="We will direct you to the home page. Happy fooding :)"
         android:textAlignment="center"
@@ -23,10 +24,9 @@
         android:id="@+id/output"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView3"
+        android:layout_below="@+id/textView5"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="18dp"
         android:text="Heyhow!"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -35,30 +35,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/output"
         android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:fontFamily="@font/mentonesb"
         android:text="We found you!"
         android:textColor="#48E262"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:id="@+id/textView5" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/check_animation"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-45dp"
-        android:layout_centerHorizontal="true"
-        android:scaleType="centerInside"
-        app:lottie_rawRes="@raw/checked_done"
-        app:lottie_loop="true" />
-
-    <ImageView
-        android:id="@+id/directToHome"
-        android:layout_width="135dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:src="@drawable/okay_btn_layout" />
+    <!--<com.airbnb.lottie.LottieAnimationView-->
+        <!--android:id="@+id/check_animation"-->
+        <!--android:layout_width="350dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="-45dp"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:scaleType="centerInside"-->
+        <!--app:lottie_rawRes="@raw/checked_done"-->
+        <!--app:lottie_loop="true" />-->
 
 </RelativeLayout>

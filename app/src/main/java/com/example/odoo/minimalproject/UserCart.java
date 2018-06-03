@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class UserCart {
     private ArrayList<MenuForCart> userOrder = new ArrayList<>();
 
-    public ArrayList<Menu> getUserOrder() {
+    public ArrayList<MenuForCart> getUserOrder() {
         return userOrder;
     }
 
