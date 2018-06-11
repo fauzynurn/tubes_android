@@ -13,9 +13,9 @@ import java.util.List;
  */
 
 public class CartAdapter extends RecyclerView.Adapter<CartItemHolder> {
-    private List<MenuForCart> cartList;
+    private List<Menu> cartList;
 
-    public CartAdapter(ArrayList<MenuForCart> cartList) {
+    public CartAdapter(List<Menu> cartList) {
         this.cartList = cartList;
     }
 
@@ -29,15 +29,41 @@ public class CartAdapter extends RecyclerView.Adapter<CartItemHolder> {
 
     @Override
     public void onBindViewHolder(CartItemHolder holder, int position) {
-        MenuForCart item = cartList.get(position);
-        holder.cartMenu.setText(item.getMeal());
-        holder.desc.setText(item.getDesc());
-        holder.totprice.setText(item.getTotalPriceMenu());
+        Menu item = cartList.get(position);
+        holder.id.setText(item.id);
+        holder.cartMenu.setText(item.meal);
+        holder.totprice.setText(item.concatedPrice);
     }
 
 
     @Override
     public int getItemCount() {
         return cartList.size();
+    }
+
+    public void addMenu(Menu menu, int index){
+        cartList.add(menu);
+        notifyItemInserted(index);
+    }
+
+    public List<Menu> getCartList(){
+        return cartList;
+    }
+
+    public boolean searchExistingItem(Menu m, CartAdapter ca){
+        for(Menu menu : ca.getCartList()){
+            if(menu.meal == m.meal){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int countTotalPrice(CartAdapter ca){
+        int total = 0;
+        for(Menu menu : ca.getCartList()){
+            total = total + menu.price;
+        }
+        return total;
     }
 }

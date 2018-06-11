@@ -1,44 +1,35 @@
 package com.example.odoo.minimalproject;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by odoo on 4/17/18.
  */
 
 public class Menu {
-    private String id;
-    private String meal;
-    private int price;
-    private String imgSrc;
+    public String id;
+    public String meal;
+    public int price;
+    public String concatedPrice;
+    public String imgSrc;
+    public String jenis;
 
-    public String getMeal() {
-        return meal;
+    public Menu(JSONObject json){
+        super();
+        try {
+            this.id = json.getString("idmenu");
+            this.meal = json.getString("namamenu");
+            this.price = json.getInt("hargaint");
+            this.concatedPrice = json.getString("hargastring");
+            this.imgSrc = json.getString("src");
+            this.jenis = json.getString("jenis");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setMeal(String meal) {
-        this.meal = meal;
-    }
+    public Menu(){
 
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public String getImgSrc() {
-        return imgSrc;
-    }
-
-    public void setImgSrc(String imgSrc) {
-        this.imgSrc = imgSrc;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 }

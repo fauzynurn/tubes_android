@@ -20,6 +20,7 @@
                     android:layout_marginEnd="8dp"/>
 
                 <EditText
+                    android:id="@+id/search_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="46dp"
                     android:layout_marginStart="70dp"
@@ -29,7 +30,6 @@
                     android:textColorHint="@color/white"
                     android:backgroundTint="#FFC267"/>
         </RelativeLayout>
-
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -50,12 +50,22 @@
             android:textSize="29sp" />
 
         <ImageView
+            android:id="@+id/cart_icon"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="22dp"
             android:layout_marginEnd="15dp"
             android:src="@drawable/carticon"/>
+
+        <ImageView
+            android:layout_width="11dp"
+            android:layout_marginBottom="3dp"
+            android:layout_height="11dp"
+            android:src="@drawable/circle_badge_bg"
+            android:layout_alignRight="@id/cart_icon"
+            android:layout_alignBottom="@+id/cart_icon"/>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_below="@id/search"
@@ -73,9 +83,8 @@
                     app:stl_indicatorInFront="false"
                     app:stl_indicatorInterpolation="smart"
                     app:stl_indicatorGravity="bottom"
-                    app:stl_indicatorColors="@array/custom_tab_colors"
-                    app:stl_indicatorThickness="6dp"
-                    app:stl_indicatorWidth="44dp"
+                    app:stl_indicatorThickness="5dp"
+                    app:stl_indicatorWidth="35dp"
                     app:stl_overlineColor="#4D000000"
                     app:stl_overlineThickness="0dp"
                     app:stl_underlineColor="@color/white"
@@ -92,6 +101,7 @@
                     app:stl_clickable="true"
                     app:stl_titleOffset="24dp"
                     app:stl_drawDecorationAfterTab="true"
+                    app:stl_indicatorColors="@array/custom_tab_colors"
                     />
         </RelativeLayout>
         <com.example.odoo.minimalproject.ViewPagerConfig

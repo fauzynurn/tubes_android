@@ -33,18 +33,6 @@
         android:textColor="@color/black"
         android:textSize="26sp" />
 
-    <com.scalified.fab.ActionButton
-        android:id="@+id/add_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        fab:image="@drawable/fab_plus_icon"
-        fab:image_size="40dp"
-        fab:size="65dp"
-        fab:button_color="#0BC553"
-        fab:button_colorPressed="#0cd65a"/>
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,5 +47,17 @@
             android:scrollbars="vertical" />
 
     </RelativeLayout>
+
+    <com.scalified.fab.ActionButton
+        android:id="@+id/add_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        fab:image="@drawable/fab_plus_icon"
+        fab:image_size="40dp"
+        fab:size="65dp"
+        fab:button_color="#0BC553"
+        fab:button_colorPressed="#0cd65a"/>
 
 </RelativeLayout>

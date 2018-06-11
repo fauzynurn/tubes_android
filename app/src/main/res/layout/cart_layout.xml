@@ -1,83 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/cart"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/transparent">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/my_cart_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="9dp"
+        android:fontFamily="@font/nunitomedium"
+        android:text="My Cart"
+        android:textColor="@color/black"
+        android:textSize="28dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/cart_list"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="50dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/my_cart_text"
+        android:layout_centerHorizontal="true"
+        android:overScrollMode="never"
+        android:scrollbars="vertical" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/cart_list"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/black" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/agbold"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:id="@+id/total_price"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@id/line"
+        android:text="0k"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/usmedium"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:id="@+id/total_text"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/line"
+        android:text="Total"/>
+
+    <mehdi.sakout.fancybuttons.FancyButton
+        android:id="@+id/checkout_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_shape"
-        android:layout_margin="10dp">
+        android:layout_below="@id/total_text"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        fancy:fb_defaultColor="#7ab800"
+        fancy:fb_focusColor="#9bd823"
+        fancy:fb_radius="5dp"
+        fancy:fb_text="Checkout"
+        fancy:fb_textColor="#FFFFFF"
+        fancy:fb_textFont="@font/nunitobold"
+        fancy:fb_textSize="18sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="43dp"
-            android:layout_marginTop="37dp"
-            android:fontFamily="@font/agbold"
-            android:text="x"
-            android:textColor="#282828"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/total_item"
-            android:textAlignment="center"
-            android:textSize="20sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="66dp"
-            android:layout_marginBottom="37dp"
-            android:layout_marginTop="37dp"
-            android:textColor="#282828"
-            android:fontFamily="@font/agbold"
-            android:text="items in Cart"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:id="@+id/textView4" />
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="0.7dp"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/total_item"
-            android:layout_marginEnd="25dp"
-            android:layout_marginStart="35dp"
-            android:background="#262626"
-            android:id="@+id/view" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="37dp"
-            android:layout_alignParentTop="true"
-            android:textColor="#282828"
-            android:layout_marginTop="37dp"
-            android:layout_marginEnd="43dp"
-            android:layout_marginRight="31dp"
-            android:id="@+id/total_price"
-            android:fontFamily="@font/agbold"
-            android:text="12k"
-            android:textAlignment="center"
-            android:textSize="20sp" />
-
-        <android.support.v7.widget.RecyclerView
-            android:overScrollMode="never"
-            android:id="@+id/cart_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="98dp"
-            android:layout_marginStart="29dp"
-            android:layout_marginEnd="14dp"
-            android:scrollbars="vertical" />
-
-    </RelativeLayout>
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

@@ -9,12 +9,12 @@ import android.widget.TextView;
  */
 
 public class CartItemHolder extends RecyclerView.ViewHolder {
-    public TextView cartMenu,desc,totprice;
+    public TextView cartMenu,totprice,id;
 
     public CartItemHolder(View view){
         super(view);
+        id = view.findViewById(R.id.id_menu);
         cartMenu = view.findViewById(R.id.the_menu);
-        desc = view.findViewById(R.id.description);
         totprice = view.findViewById(R.id.total_price_per_item);
     }
 }

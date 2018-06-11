@@ -44,10 +44,10 @@ public class RecentOrderAdapter extends RecyclerView.Adapter<RecentOrderItemHold
     @Override
     public void onBindViewHolder(RecentOrderItemHolder holder, int position) {
         RecentOrder item = RecentOrderList.get(position);
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
         Date d = null;
         try {
-            d = format.parse(item.getOrderedDate());
+            d = format.parse(item.orderedDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -60,7 +60,9 @@ public class RecentOrderAdapter extends RecyclerView.Adapter<RecentOrderItemHold
         holder.date.setText(String.valueOf(date));
         holder.time.setText(timeDate);
         holder.month.setText(String.valueOf(new SimpleDateFormat("MMMM", Locale.ENGLISH).format(d.getTime())));
-        holder.status.setText(item.getStatus());
+        holder.status.setText(item.status);
+        String concatPrice = String.valueOf(item.totalPrice) + "k";
+        holder.price.setText(concatPrice);
     }
 
     @Override

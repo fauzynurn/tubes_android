@@ -1,5 +1,8 @@
 package com.example.odoo.minimalproject;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,32 +11,19 @@ import java.util.List;
  */
 
 public class RecentOrder {
-    private String orderedDate;
-    private List<String> orderedMenu = new ArrayList<String>();
-    private String status;
+    public String orderedDate;
+    public int totalPrice;
+    public String status;
 
 
-    public String getOrderedDate() {
-        return orderedDate;
-    }
-
-    public void setOrderedDate(String orderedDate) {
-        this.orderedDate = orderedDate;
-    }
-
-    public List<String> getOrderedMenu() {
-        return orderedMenu;
-    }
-
-    public void setOrderedMenu(List<String> orderedMenu) {
-        this.orderedMenu = orderedMenu;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public RecentOrder(JSONObject json){
+        super();
+        try {
+            this.orderedDate = json.getString("tglpesan");
+            this.totalPrice = json.getInt("totalharga");
+            this.status = json.getString("status");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,10 +1,13 @@
 package com.example.odoo.minimalproject;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.media.Image;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -27,6 +30,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.scalified.fab.ActionButton;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,6 +46,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import cz.msebera.android.httpclient.HttpResponse;
+import cz.msebera.android.httpclient.client.HttpClient;
+import cz.msebera.android.httpclient.client.methods.HttpGet;
+import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+
 
 /**
  * Created by odoo on 4/21/18.
@@ -44,8 +59,9 @@ import java.util.Locale;
 public class HomeActivity extends AppCompatActivity{
     boolean isThemed;
     ActionButton addFood;
-
+    public static final String URL_GETRECENTORDERLIST = "http://192.168.100.8/android/getRecentOrderList.php";
     RecyclerView recentOrderList;
+    List<RecentOrder> roList = new ArrayList<>();
     private RecentOrderAdapter roAdapter;
 //    ActionButton addOrder;
     private static final String TAG = "HomeActivity";
@@ -68,42 +84,75 @@ public class HomeActivity extends AppCompatActivity{
         if (!isThemed) {
             getWindow().setStatusBarColor(Color.parseColor("#47D4AE"));
         }
-//        addOrder = findViewById(R.id.add_order);
-//        addOrder.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(HomeActivity.this, MenuActivity.class);
-//                startActivity(i);
-//            }
-//        });
+        CallWebPageTask task = new CallWebPageTask();
+        task.applicationContext = HomeActivity.this;
+        task.execute(new String[] { URL_GETRECENTORDERLIST });
         recentOrderList = findViewById(R.id.recent_order_list);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recentOrderList.setLayoutManager(llm);
-        roAdapter = new RecentOrderAdapter(getDummyData());
+        roAdapter = new RecentOrderAdapter(roList);
         recentOrderList.setAdapter(roAdapter);
     }
-
-    public List<RecentOrder> getDummyData(){
-        List<RecentOrder> returnList = new ArrayList<>();
-        RecentOrder ro1 = new RecentOrder();
-        List<String> ro1List = new ArrayList<>();
-        ro1List.add("Nasi Putih");
-        ro1List.add("Ayam Bakar");
-        ro1List.add("Mochafrio");
-        ro1.setStatus("Paid");
-        ro1.setOrderedDate("1/03/2017 10:40");
-        ro1.setOrderedMenu(ro1List);
-
-        RecentOrder ro2 = new RecentOrder();
-        List<String> ro2List = new ArrayList<>();
-        ro2List.add("Nasi Goreng");
-        ro2List.add("Ayam Geprek");
-        ro2List.add("Nutrisari");
-        ro2.setStatus("Paid");
-        ro2.setOrderedDate("26/02/2017 11:22");
-        ro2.setOrderedMenu(ro2List);
-
-        returnList.add(ro1); returnList.add(ro2);
-        return returnList;
+    //Method untuk Mengirimkan data keserver
+    public String getRequest(String Url){
+        String sret;
+        HttpClient client = new DefaultHttpClient();
+        HttpGet request = new HttpGet(Url);
+        try{
+            HttpResponse response = client.execute(request);
+            sret= request(response);
+        }catch(Exception ex){
+            sret= "Failed Connect to server!";
+        }
+        return sret;
     }
+    //Method untuk Menerima data dari server
+    public static String request(HttpResponse response){
+        String result = "";
+        try{
+            InputStream in = response.getEntity().getContent();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            StringBuilder str = new StringBuilder();
+            String line = null;
+            while((line = reader.readLine()) != null){
+                str.append(line + "\n");
+            }
+            in.close();
+            result = str.toString();
+        }catch(Exception ex){
+            result = "Error";
+        }
+        return result;
     }
+
+    private class CallWebPageTask extends AsyncTask<String, Void, String> {
+        protected Context applicationContext;
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected String doInBackground(String... urls) {
+            String response = "";
+            response = getRequest(urls[0]);
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            JSONObject jObject = null;
+            try {
+                jObject = new JSONObject(result);
+                JSONArray newsJsonArray = jObject.getJSONArray("Pesanan");
+                for (int i = 0; i < newsJsonArray.length(); i++) {
+                    RecentOrder ro = new RecentOrder(newsJsonArray.getJSONObject(i));
+                    roList.add(0,ro);
+                }
+                roAdapter.notifyDataSetChanged();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
