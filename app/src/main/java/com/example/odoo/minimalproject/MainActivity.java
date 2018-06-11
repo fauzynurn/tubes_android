@@ -16,9 +16,6 @@ public class MainActivity extends AppCompatActivity {
     EditText nim;
     private DatabaseReference mRef;
     boolean isThemed;
-    CustomDialog cd;
-    PopupWindow pw;
-    String nimContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         statusBarSetter statbarsetter = new statusBarSetter();

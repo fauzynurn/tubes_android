@@ -1,7 +1,9 @@
 package com.example.odoo.minimalproject;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,17 +30,19 @@ public class RecentOrderAdapter extends RecyclerView.Adapter<RecentOrderItemHold
     private List<RecentOrder> RecentOrderList;
     String dayString;
     String timeDate;
+    Context c;
     int date;
 
-    public RecentOrderAdapter(List<RecentOrder> RecentOrderList) {
+    public RecentOrderAdapter(List<RecentOrder> RecentOrderList, Context c) {
         this.RecentOrderList = RecentOrderList;
+        this.c = c;
     }
 
     @Override
     public RecentOrderItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recent_order_item_layout, parent, false);
-        return new RecentOrderItemHolder(itemView);
+        return new RecentOrderItemHolder(itemView,c);
     }
 
     @Override
@@ -59,6 +63,7 @@ public class RecentOrderAdapter extends RecyclerView.Adapter<RecentOrderItemHold
 //        holder.mpAdapter.setMenuList(item.getOrderedMenu());
         holder.date.setText(String.valueOf(date));
         holder.time.setText(timeDate);
+        holder.rawDate.setText(item.orderedDate);
         holder.month.setText(String.valueOf(new SimpleDateFormat("MMMM", Locale.ENGLISH).format(d.getTime())));
         holder.status.setText(item.status);
         String concatPrice = String.valueOf(item.totalPrice) + "k";

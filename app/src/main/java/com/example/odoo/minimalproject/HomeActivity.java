@@ -90,7 +90,7 @@ public class HomeActivity extends AppCompatActivity{
         recentOrderList = findViewById(R.id.recent_order_list);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         recentOrderList.setLayoutManager(llm);
-        roAdapter = new RecentOrderAdapter(roList);
+        roAdapter = new RecentOrderAdapter(roList,HomeActivity.this);
         recentOrderList.setAdapter(roAdapter);
     }
     //Method untuk Mengirimkan data keserver

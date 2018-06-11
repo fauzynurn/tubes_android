@@ -2,6 +2,7 @@ package com.example.odoo.minimalproject;
 
 import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -32,10 +33,15 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     TextView totalPrice;
     CartAdapter ca;
     FancyButton checkOutBtn;
+    Context menuActivityContext;
     FragmentManager fm;
     AddOrder addOrder;
-    public BottomSheetDialog(){
+    @SuppressLint("ValidFragment")
+    public BottomSheetDialog(Context c){
+        menuActivityContext = c;
     }
+
+    public BottomSheetDialog(){}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,10 +62,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
                 @Override
                 public void onClick(View view) {
                     try {
-                        dismiss();
-                        addOrder = new AddOrder(getContext(), ca.getCartList(),ca.countTotalPrice(ca),fm);
-                        Intent i = new Intent(getContext(),HomeActivity.class);
-                        startActivity(i);
+                        addOrder = new AddOrder(getContext(), ca.getCartList(),ca.countTotalPrice(ca),fm,menuActivityContext);
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
