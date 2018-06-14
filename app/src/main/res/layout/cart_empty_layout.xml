@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/sad_watermelon"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sad_watermelon"/>
+
+    <TextView
+        android:id="@+id/oops_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:fontFamily="@font/nunitomedium"
+        android:layout_centerHorizontal="true"
+        android:shadowColor="@color/black"
+        android:shadowRadius="1"
+        android:layout_below="@id/sad_watermelon"
+        android:text="Oops!"/>
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/nunitomedium"
+        android:textSize="15sp"
+        android:layout_below="@id/oops_text"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginBottom="25dp"
+        android:shadowRadius="14"
+        android:text="Your cart is empty. Try to add something from the menu."/>
+
+</RelativeLayout>

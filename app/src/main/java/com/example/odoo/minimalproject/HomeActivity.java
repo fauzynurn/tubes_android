@@ -23,6 +23,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -63,35 +65,25 @@ public class HomeActivity extends AppCompatActivity{
     RecyclerView recentOrderList;
     List<RecentOrder> roList = new ArrayList<>();
     private RecentOrderAdapter roAdapter;
+    LoadingDialog ld;
+    LinearLayoutManager llm;
 //    ActionButton addOrder;
     private static final String TAG = "HomeActivity";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_layout);
         statusBarSetter statbarsetter = new statusBarSetter();
         getWindow().setStatusBarColor(Color.WHITE);
-        addFood = findViewById(R.id.add_menu);
-        addFood.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(HomeActivity.this,MenuActivity.class);
-                startActivity(i);
-            }
-        });
         isThemed = statbarsetter.setMiuiStatusBarIconDarkMode(HomeActivity.this, true);
         if (!isThemed) {
             getWindow().setStatusBarColor(Color.parseColor("#47D4AE"));
         }
+        roAdapter = new RecentOrderAdapter(roList,HomeActivity.this);
         CallWebPageTask task = new CallWebPageTask();
         task.applicationContext = HomeActivity.this;
         task.execute(new String[] { URL_GETRECENTORDERLIST });
-        recentOrderList = findViewById(R.id.recent_order_list);
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        recentOrderList.setLayoutManager(llm);
-        roAdapter = new RecentOrderAdapter(roList,HomeActivity.this);
-        recentOrderList.setAdapter(roAdapter);
+        llm = new LinearLayoutManager(this);
     }
     //Method untuk Mengirimkan data keserver
     public String getRequest(String Url){
@@ -130,6 +122,8 @@ public class HomeActivity extends AppCompatActivity{
 
         @Override
         protected void onPreExecute() {
+            ld = new LoadingDialog();
+            ld.show(getSupportFragmentManager(),"defg");
         }
 
         @Override
@@ -150,6 +144,33 @@ public class HomeActivity extends AppCompatActivity{
                     roList.add(0,ro);
                 }
                 roAdapter.notifyDataSetChanged();
+                if(roList.isEmpty()){
+                    setContentView(R.layout.home_empty_layout);
+                    addFood = findViewById(R.id.add_menu);
+                    addFood.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(HomeActivity.this,MenuActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                    });
+                }else{
+                    setContentView(R.layout.home_layout);
+                    addFood = findViewById(R.id.add_menu);
+                    addFood.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent i = new Intent(HomeActivity.this,MenuActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                    });
+                    recentOrderList = findViewById(R.id.recent_order_list);
+                    recentOrderList.setLayoutManager(llm);
+                    recentOrderList.setAdapter(roAdapter);
+                }
+                ld.dismiss();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -61,15 +61,9 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
             checkOutBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    try {
-                        addOrder = new AddOrder(getContext(), ca.getCartList(),ca.countTotalPrice(ca),fm,menuActivityContext);
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
+                    addOrder = new AddOrder(getContext(), ca.getCartList(),ca.countTotalPrice(ca),fm,menuActivityContext);
+                    startActivity(new Intent(menuActivityContext,HomeActivity.class));
+                    getActivity().finish();
                 }
             });
 

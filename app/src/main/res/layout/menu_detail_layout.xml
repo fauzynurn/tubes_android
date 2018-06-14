@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_height="135dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/intPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/id_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:visibility="invisible"/>
+
+    <com.jcminarro.roundkornerlayout.RoundKornerRelativeLayout
+        android:layout_width="140dp"
+        android:id="@+id/menu_image"
+        android:layout_height="95dp"
+        app:corner_radius="10dp">
+
+        <ImageView
+            android:id="@+id/rounded_image"
+            android:layout_width="140dp"
+            android:layout_height="95dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/orakarik" />
+    </com.jcminarro.roundkornerlayout.RoundKornerRelativeLayout>
+    <RelativeLayout
+        android:layout_width="140dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp"
+        android:layout_below="@+id/menu_image">
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:id="@+id/menu_text"
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitomedium"
+            android:text="Nasi Putih"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="28dp"
+        android:src="@drawable/circle"
+        android:layout_alignBottom="@id/menu_image"
+        android:layout_alignRight="@id/menu_image"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/imageView" />
+
+    <RelativeLayout
+        android:layout_width="36dp"
+        android:layout_height="28dp"
+        android:layout_alignStart="@+id/imageView"
+        android:layout_alignTop="@+id/imageView">
+
+        <TextView
+            android:id="@+id/menu_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitomedium"
+            android:layout_centerInParent="true"
+            android:text="14k"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </RelativeLayout>
+</RelativeLayout>
