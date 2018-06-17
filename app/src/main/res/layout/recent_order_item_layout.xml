@@ -57,33 +57,12 @@
         android:background="@drawable/menu_bg_copy"
         android:layout_height="88dp">
 
-        <ImageView
-            android:id="@+id/circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/circle_waiting" />
-
-        <TextView
-            android:id="@+id/status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="12dp"
-            android:layout_toEndOf="@id/circle"
-            android:fontFamily="@font/agbold"
-            android:text="Waiting"
-            android:textColor="#B5B5B5" />
-
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="22dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="15dp"
             android:fontFamily="@font/agbold"
             android:text="12:50:10"
             android:textColor="#B5B5B5" />
@@ -93,13 +72,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@id/status"
+            android:layout_marginTop="25dp"
             android:layout_marginEnd="22dp"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/agbold"
             android:text="12k"
-            android:textColor="#B5B5B5" />
+            android:textSize="24sp"
+            android:textColor="#B7B7B7" />
 
         <info.hoang8f.widget.FButton
             android:id="@+id/see_detail_btn"
@@ -111,8 +90,8 @@
             android:fontFamily="@font/nunitomedium"
             android:textColor="@color/white"
             android:textAllCaps="false"
-            android:layout_marginTop="15dp"
-            android:layout_below="@id/circle"
+            android:layout_marginTop="6dp"
+            android:layout_below="@id/time"
             android:layout_height="22dp"
             fbutton:shadowEnabled="false"
             fbutton:cornerRadius="6dp"

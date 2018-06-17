@@ -39,7 +39,7 @@ import info.hoang8f.widget.FButton;
 import mehdi.sakout.fancybuttons.FancyButton;
 
 public class RecentOrderItemHolder extends RecyclerView.ViewHolder {
-    public static final String URL_GETDETAILORDER = "http://192.168.100.8/android/getDetailOrder.php";
+    public static final String URL_GETDETAILORDER = "http://laniary-accountabil.000webhostapp.com/android/getDetailOrder.php";
     public TextView date, month, status, price, time,rawDate;
     public CardView cvLeft;
     public FButton seeDetail;
@@ -50,7 +50,6 @@ public class RecentOrderItemHolder extends RecyclerView.ViewHolder {
         context = c;
         date = view.findViewById(R.id.date);
         month = view.findViewById(R.id.month);
-        status = view.findViewById(R.id.status);
         rawDate = view.findViewById(R.id.raw_date);
         time = view.findViewById(R.id.time);
         price = view.findViewById(R.id.price);

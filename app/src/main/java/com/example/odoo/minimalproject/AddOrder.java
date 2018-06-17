@@ -34,9 +34,9 @@ import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 
 
 public class AddOrder{
-    public static final String URL_ADDORDER = "http://192.168.100.8/android/addOrder.php";
-    public static final String URL_GETLATESTDATE = "http://192.168.100.8/android/getLatestDate.php";
-    public static final String URL_ADDDETAILORDER = "http://192.168.100.8/android/addDetailOrder.php";
+    public static final String URL_ADDORDER = "http://laniary-accountabil.000webhostapp.com/android/addOrder.php";
+    public static final String URL_GETLATESTDATE = "http://laniary-accountabil.000webhostapp.com/android/getLatestDate.php";
+    public static final String URL_ADDDETAILORDER = "http://laniary-accountabil.000webhostapp.com/android/addDetailOrder.php";
     String getLatestDateUrl = URL_GETLATESTDATE + "?nim=161511049";
     private String nim = "161511049";
     private List<Menu> menuList = new ArrayList<>();
@@ -129,7 +129,7 @@ public class AddOrder{
         protected void onPostExecute(String result) {
             //Kondisi timestamp terbaru harus sudah ada(tidak null). Disini bisa dilakukan loop insert ke
             //tabel detilpesanan
-
+            DatabaseController dController = new DatabaseController();
             for(Menu menu : menuList){
                 CallWebPageTask1 task2 = new CallWebPageTask1();
                 task2.applicationContext = c.getApplicationContext();
@@ -137,6 +137,7 @@ public class AddOrder{
                 String addDetailOrderUrl = URL_ADDDETAILORDER + "?nim=" + nim + "&tglpesan=" + result + "&idmenu=" + menu.id;
                 task2.execute(new String[]{addDetailOrderUrl});
             }
+            dController.getOrderFromMysql();
         }
     }
 

@@ -69,14 +69,11 @@ public class MenuActivity extends AppCompatActivity{
         }
         search = findViewById(R.id.search_edit_text);
         cAdapter = new CartAdapter(myCart);
-        bsd = new BottomSheetDialog(MenuActivity.this);
-        bsd.setFragmentManager(getSupportFragmentManager());
-        bsd.setCartAdapter(cAdapter);
         cartIcon = findViewById(R.id.cart_icon);
         cartIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                bsd.show(getSupportFragmentManager(),"abcd");
+                bsd = new BottomSheetDialog(MenuActivity.this,getLayoutInflater(),cAdapter,getSupportFragmentManager());
             }
         });
         MyTab = findViewById(R.id.view_page_tab);

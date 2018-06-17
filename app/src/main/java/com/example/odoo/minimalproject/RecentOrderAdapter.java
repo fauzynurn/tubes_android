@@ -27,17 +27,19 @@ import info.hoang8f.widget.FButton;
 
 public class RecentOrderAdapter extends RecyclerView.Adapter<RecentOrderItemHolder> {
 
-    private List<RecentOrder> RecentOrderList;
+    public List<RecentOrder> RecentOrderList;
     String dayString;
     String timeDate;
     Context c;
     int date;
 
-    public RecentOrderAdapter(List<RecentOrder> RecentOrderList, Context c) {
-        this.RecentOrderList = RecentOrderList;
+    public RecentOrderAdapter(Context c) {
         this.c = c;
     }
 
+    public void setList(List<RecentOrder> RecentOrderList){
+        this.RecentOrderList = RecentOrderList;
+    }
     @Override
     public RecentOrderItemHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
@@ -65,7 +67,6 @@ public class RecentOrderAdapter extends RecyclerView.Adapter<RecentOrderItemHold
         holder.time.setText(timeDate);
         holder.rawDate.setText(item.orderedDate);
         holder.month.setText(String.valueOf(new SimpleDateFormat("MMMM", Locale.ENGLISH).format(d.getTime())));
-        holder.status.setText(item.status);
         String concatPrice = String.valueOf(item.totalPrice) + "k";
         holder.price.setText(concatPrice);
     }

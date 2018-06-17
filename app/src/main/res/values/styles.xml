@@ -16,6 +16,19 @@
         <item name="colorControlHighlight">#FF5656</item>
         <item name="colorButtonNormal">#FF0000</item>
     </style>
+    <style name="MaterialDialogSheet" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowAnimationStyle">@style/MaterialDialogSheetAnimation</item>
+    </style>
+    <style name="MaterialDialogSheetAnimation">
+        <item name="android:windowEnterAnimation">@anim/pop_show</item>
+        <item name="android:windowExitAnimation">@anim/pop_hide</item>
+    </style>
     <!--<style name="BottomBarTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
         <!--<item name="android:windowBackground">#0000</item>    -->
     <!--</style>-->

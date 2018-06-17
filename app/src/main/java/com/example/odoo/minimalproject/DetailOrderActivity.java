@@ -29,7 +29,7 @@ import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 
 public class DetailOrderActivity extends AppCompatActivity {
     RecyclerView detailOrderRecycler;
-    public static final String URL_GETDETAILORDER = "http://192.168.100.8/android/getDetailOrder.php";
+    public static final String URL_GETDETAILORDER = "http://laniary-accountabil.000webhostapp.com/android/getDetailOrder.php";
     boolean isThemed;
     String rawDate;
     DetailOrderAdapter dOrderAdapter;

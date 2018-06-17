@@ -39,7 +39,7 @@ public class DrinkFragment extends Fragment {
     List<Menu> dList = new ArrayList<>();
     Context context;
     CartAdapter ca;
-    public static final String URL_GETDRINKLIST = "http://192.168.100.8/android/getDrinkList.php";
+    public static final String URL_GETDRINKLIST = "http://laniary-accountabil.000webhostapp.com/android/getDrinkList.php";
 
     public DrinkFragment(){
 

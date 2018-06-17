@@ -61,7 +61,7 @@ import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 public class HomeActivity extends AppCompatActivity{
     boolean isThemed;
     ActionButton addFood;
-    public static final String URL_GETRECENTORDERLIST = "http://192.168.100.8/android/getRecentOrderList.php";
+    public static final String URL_GETRECENTORDERLIST = "http://laniary-accountabil.000webhostapp.com/android/getRecentOrderList.php";
     RecyclerView recentOrderList;
     List<RecentOrder> roList = new ArrayList<>();
     private RecentOrderAdapter roAdapter;
@@ -79,11 +79,11 @@ public class HomeActivity extends AppCompatActivity{
         if (!isThemed) {
             getWindow().setStatusBarColor(Color.parseColor("#47D4AE"));
         }
-        roAdapter = new RecentOrderAdapter(roList,HomeActivity.this);
+        llm = new LinearLayoutManager(this);
+        roAdapter = new RecentOrderAdapter(HomeActivity.this);
         CallWebPageTask task = new CallWebPageTask();
         task.applicationContext = HomeActivity.this;
         task.execute(new String[] { URL_GETRECENTORDERLIST });
-        llm = new LinearLayoutManager(this);
     }
     //Method untuk Mengirimkan data keserver
     public String getRequest(String Url){
@@ -143,6 +143,7 @@ public class HomeActivity extends AppCompatActivity{
                     RecentOrder ro = new RecentOrder(newsJsonArray.getJSONObject(i));
                     roList.add(0,ro);
                 }
+                roAdapter.setList(roList);
                 roAdapter.notifyDataSetChanged();
                 if(roList.isEmpty()){
                     setContentView(R.layout.home_empty_layout);
@@ -169,6 +170,8 @@ public class HomeActivity extends AppCompatActivity{
                     recentOrderList = findViewById(R.id.recent_order_list);
                     recentOrderList.setLayoutManager(llm);
                     recentOrderList.setAdapter(roAdapter);
+
+                    Log.i(TAG, "onPostExecute: "+roAdapter.RecentOrderList.size());
                 }
                 ld.dismiss();
             } catch (JSONException e) {
