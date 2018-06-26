@@ -23,9 +23,17 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -65,9 +73,27 @@ public class BottomSheetDialog extends Dialog {
             checkOutBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    addOrder = new AddOrder(getContext(), cartAdapter.getCartList(),cartAdapter.countTotalPrice(cartAdapter),fManager,menuActivityContext);
-                    menuActivityContext.startActivity(new Intent(menuActivityContext,HomeActivity.class));
-                    ((Activity)menuActivityContext).finish();
+                    DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+                    mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(!dataSnapshot.child("statusorder").exists() || dataSnapshot.child("statusorder").getValue().toString().equals("close")){
+                                dismiss();
+                                Toast.makeText(getContext(),"We have already closed. Try again next time.", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Collections.sort(cartAdapter.getCartList(),Menu.MenuByName);
+                                addOrder = new AddOrder(cartAdapter.menuListForFirebase,getContext(), cartAdapter.getCartList(),cartAdapter.countTotalPrice(cartAdapter),fManager,menuActivityContext);
+                                dismiss();
+                                menuActivityContext.startActivity(new Intent(menuActivityContext,HomeActivity.class));
+                                ((Activity)menuActivityContext).finish();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                 }
             });
         }

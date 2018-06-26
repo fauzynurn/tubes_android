@@ -14,6 +14,7 @@ import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartItemHolder> {
     private List<Menu> cartList;
+    public List<Menu> menuListForFirebase = new ArrayList<>();
 
     public CartAdapter(List<Menu> cartList) {
         this.cartList = cartList;
@@ -43,6 +44,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartItemHolder> {
 
     public void addMenu(Menu menu, int index){
         cartList.add(menu);
+        menuListForFirebase.add(menu);
         notifyItemInserted(index);
     }
 

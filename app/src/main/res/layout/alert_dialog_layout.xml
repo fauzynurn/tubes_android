@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/main_content"
+        android:layout_width="190dp"
+        android:layout_height="207dp"
+        android:paddingTop="25dp"
+        android:background="@drawable/dialog_bg"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="100dp"
+            android:src="@drawable/close_logo" />
+
+        <TextView
+            android:id="@+id/main_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/logo"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/nunitobold"
+            android:text="We are currently close"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/supporting_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/main_text"
+            android:fontFamily="@font/nunitobold"
+            android:text="Go back when we're ready"
+            android:textSize="11sp" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/okay_btn"
+            android:layout_below="@id/supporting_text"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fancy:fb_defaultColor="@color/white"
+            fancy:fb_focusColor="#DDDDDD"
+            android:layout_marginTop="7dp"
+            android:paddingBottom="10dp"
+            fancy:fb_radius="10dp"
+            fancy:fb_text="Okay"
+            fancy:fb_textColor="@color/black"
+            fancy:fb_textFont="@font/nunitobold"
+            fancy:fb_textSize="16sp"/>
+    </RelativeLayout>
+</RelativeLayout>

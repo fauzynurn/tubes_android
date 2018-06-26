@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">minimalproject</string>
+    <string name="app_name">Bahteralicious</string>
+    <string name="singlemenu"><u>No, i only want to order this menu.</u></string>
 </resources>

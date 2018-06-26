@@ -1,27 +1,16 @@
 package com.example.odoo.minimalproject;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.GradientDrawable;
-import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,14 +28,8 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
@@ -67,6 +50,8 @@ public class HomeActivity extends AppCompatActivity{
     private RecentOrderAdapter roAdapter;
     LoadingDialog ld;
     LinearLayoutManager llm;
+    TextView shortName;
+    SharedPreferences pref;
 //    ActionButton addOrder;
     private static final String TAG = "HomeActivity";
 
@@ -83,7 +68,9 @@ public class HomeActivity extends AppCompatActivity{
         roAdapter = new RecentOrderAdapter(HomeActivity.this);
         CallWebPageTask task = new CallWebPageTask();
         task.applicationContext = HomeActivity.this;
-        task.execute(new String[] { URL_GETRECENTORDERLIST });
+        pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        String urlGetRecentOrder = URL_GETRECENTORDERLIST + "?nim="+pref.getString("nim",null);
+        task.execute(new String[] { urlGetRecentOrder });
     }
     //Method untuk Mengirimkan data keserver
     public String getRequest(String Url){
@@ -137,8 +124,7 @@ public class HomeActivity extends AppCompatActivity{
         protected void onPostExecute(String result) {
             JSONObject jObject = null;
             try {
-                jObject = new JSONObject(result);
-                JSONArray newsJsonArray = jObject.getJSONArray("Pesanan");
+                JSONArray newsJsonArray = new JSONArray(result);
                 for (int i = 0; i < newsJsonArray.length(); i++) {
                     RecentOrder ro = new RecentOrder(newsJsonArray.getJSONObject(i));
                     roList.add(0,ro);
@@ -147,24 +133,65 @@ public class HomeActivity extends AppCompatActivity{
                 roAdapter.notifyDataSetChanged();
                 if(roList.isEmpty()){
                     setContentView(R.layout.home_empty_layout);
+                    shortName = findViewById(R.id.profile_text);
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                    shortName.setText(pref.getString("shortName",null));
                     addFood = findViewById(R.id.add_menu);
                     addFood.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent i = new Intent(HomeActivity.this,MenuActivity.class);
-                            startActivity(i);
-                            finish();
+                            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+                            mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if(!dataSnapshot.child("statusorder").exists() || dataSnapshot.child("statusorder").getValue().toString().equals("close")){
+                                        AlertDialog ad = new AlertDialog();
+                                        ad.show(getSupportFragmentManager(),"alert");
+                                    }else{
+                                        Intent i = new Intent(HomeActivity.this,MenuActivity.class);
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
                         }
                     });
                 }else{
                     setContentView(R.layout.home_layout);
+                    shortName = findViewById(R.id.profile_text);
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                    shortName.setText(pref.getString("shortName",null));
                     addFood = findViewById(R.id.add_menu);
                     addFood.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            Intent i = new Intent(HomeActivity.this,MenuActivity.class);
-                            startActivity(i);
-                            finish();
+                            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference();
+                            mRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    if(!dataSnapshot.child("statusorder").exists() || dataSnapshot.child("statusorder")
+                                            .getValue().toString().equals("close")){
+                                        AlertDialog ad = new AlertDialog();
+                                        ad.show(getSupportFragmentManager(),"alert");
+                                    }else{
+                                        Toast.makeText(applicationContext, dataSnapshot.child("statusorder")
+                                                .getValue().toString(), Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(HomeActivity.this,MenuActivity.class);
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
                         }
                     });
                     recentOrderList = findViewById(R.id.recent_order_list);

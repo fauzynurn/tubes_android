@@ -1,12 +1,14 @@
 package com.example.odoo.minimalproject;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,8 +17,13 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import cz.msebera.android.httpclient.HttpResponse;
 import cz.msebera.android.httpclient.client.HttpClient;
@@ -28,32 +35,46 @@ import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
  */
 
 public class DetailOrderActivity extends AppCompatActivity {
+    //Masuk kesini, data yang dibutuhin :
+    // 1. Timestamp order
+    // 2. Total harga
+    // 3. List menu yang bakal masuk ke adapter
     RecyclerView detailOrderRecycler;
     public static final String URL_GETDETAILORDER = "http://laniary-accountabil.000webhostapp.com/android/getDetailOrder.php";
     boolean isThemed;
+    TextView totalPrice,numOfItems,date,time;
     String rawDate;
     DetailOrderAdapter dOrderAdapter;
-    List<String> detailOrderList = new ArrayList<>();
+    List<Menu> detailOrderList = new ArrayList<>();
+    Intent intent;
+    Bundle extras;
+    SharedPreferences pref;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_order_layout);
+        totalPrice = findViewById(R.id.price);
+        numOfItems = findViewById(R.id.num_of_items);
+        date = findViewById(R.id.date_data);
+        time = findViewById(R.id.time_data);
+        pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         statusBarSetter statbarsetter = new statusBarSetter();
         getWindow().setStatusBarColor(Color.WHITE);
         isThemed = statbarsetter.setMiuiStatusBarIconDarkMode(DetailOrderActivity.this, true);
         if (!isThemed) {
             getWindow().setStatusBarColor(Color.parseColor("#47D4AE"));
         }
+        intent = getIntent();
+        extras = intent.getExtras();
         detailOrderRecycler = findViewById(R.id.detail_order_recycler);
-        dOrderAdapter = new DetailOrderAdapter(detailOrderList);
+        dOrderAdapter = new DetailOrderAdapter(detailOrderList,this);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         detailOrderRecycler.setLayoutManager(llm);
         detailOrderRecycler.setAdapter(dOrderAdapter);
-        Intent intent = getIntent();
-        rawDate = (String) intent.getExtras().get("encodedDate");
+        rawDate = extras.getString("encodedDate");
         String encodedDate = rawDate.replaceAll(" ","+");;
-        String url1 = URL_GETDETAILORDER + "?nim=161511049&tglorder="+encodedDate;
+        String url1 = URL_GETDETAILORDER + "?nim="+pref.getString("nim",null)+"&tglorder="+encodedDate;
         CallWebPageTask task1 = new CallWebPageTask();
         task1.execute(new String[]{url1});
     }
@@ -93,9 +114,11 @@ public class DetailOrderActivity extends AppCompatActivity {
 
     //Class CallWebPageTask untuk implementasi class AscyncTask
     private class CallWebPageTask extends AsyncTask<String, Void, String> {
-
+        LoadingDialog ld;
         @Override
         protected void onPreExecute() {
+            ld = new LoadingDialog();
+            ld.show(getSupportFragmentManager(),"abcd");
         }
 
         @Override
@@ -112,10 +135,22 @@ public class DetailOrderActivity extends AppCompatActivity {
                 jObject = new JSONObject(result);
                 JSONArray newsJsonArray = jObject.getJSONArray("Detailorder");
                 for (int i = 0; i < newsJsonArray.length(); i++) {
-                    String menuName = newsJsonArray.getJSONObject(i).getString("namamenu");
+                    Menu menuName = new Menu(newsJsonArray.getJSONObject(i));
                     detailOrderList.add(menuName);
                 }
+                totalPrice.setText(extras.getString("totalPrice"));
+                DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
+                Date d = null;
+                try {
+                    d = format.parse(rawDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                time.setText(new SimpleDateFormat("HH:mm", Locale.ENGLISH).format(d.getTime()));
+                date.setText(new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).format(d.getTime()));
+                numOfItems.setText(String.valueOf(dOrderAdapter.menuList.size() + " items"));
                 dOrderAdapter.notifyDataSetChanged();
+                ld.dismiss();
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidviewhover.BlurLayout;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -37,21 +38,21 @@ public class MenuItemHolder extends RecyclerView.ViewHolder {
         menuName = view.findViewById(R.id.menu_text);
         price = view.findViewById(R.id.menu_price);
         id = view.findViewById(R.id.id_menu);
-        roundedImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Menu menu = new Menu();
-                menu.id = id.getText().toString();
-                menu.meal = menuName.getText().toString();
-                menu.price = Integer.parseInt(priceInt.getText().toString());
-                menu.concatedPrice = price.getText().toString();
-                if (cartAdapter.searchExistingItem(menu,cartAdapter)) {
-                    Toast.makeText(c, "You can only add the same menu once", Toast.LENGTH_SHORT).show();
-                } else {
-                    cartAdapter.addMenu(menu, cartAdapter.getItemCount());
-                    Toast.makeText(c, menuName.getText().toString() + " added to cart", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+//        roundedImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Menu menu = new Menu();
+//                menu.id = id.getText().toString();
+//                menu.meal = menuName.getText().toString();
+//                menu.price = Integer.parseInt(priceInt.getText().toString());
+//                menu.concatedPrice = price.getText().toString();
+//                if (cartAdapter.searchExistingItem(menu,cartAdapter)) {
+//                    Toast.makeText(c, "You can only add the same menu once", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    cartAdapter.addMenu(menu, cartAdapter.getItemCount());
+//                    Toast.makeText(c, menuName.getText().toString() + " added to cart", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
     }
 }

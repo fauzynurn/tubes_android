@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -37,25 +38,26 @@ public class AddOrder{
     public static final String URL_ADDORDER = "http://laniary-accountabil.000webhostapp.com/android/addOrder.php";
     public static final String URL_GETLATESTDATE = "http://laniary-accountabil.000webhostapp.com/android/getLatestDate.php";
     public static final String URL_ADDDETAILORDER = "http://laniary-accountabil.000webhostapp.com/android/addDetailOrder.php";
-    String getLatestDateUrl = URL_GETLATESTDATE + "?nim=161511049";
-    private String nim = "161511049";
     private List<Menu> menuList = new ArrayList<>();
+    private List<Menu> menuListForFirebase = new ArrayList<>();
     private int totalHarga;
     private String status = "Waiting";
     private Context c;
     private Context menuActivityContext;
     FragmentManager fw;
+    SharedPreferences pref;
     String latestDate;
     private static final String TAG = "AddOrder";
 
-    public AddOrder(Context c, List<Menu> mList, int totalHarga, FragmentManager fm, Context a) {
+    public AddOrder(List<Menu> firebaseList, Context c, List<Menu> mList, int totalHarga, FragmentManager fm, Context a) {
         this.c = c;
         this.menuActivityContext = a;
+        menuListForFirebase = firebaseList;
         fw = fm;
         menuList = mList;
         this.totalHarga = totalHarga;
-
-        String addOrderUrl = URL_ADDORDER + "?nim=" + nim + "&totalHarga=" + this.totalHarga + "&status=" + status;
+        pref = menuActivityContext.getSharedPreferences("MyPref", 0);
+        String addOrderUrl = URL_ADDORDER + "?nim=" + pref.getString("nim",null) + "&totalHarga=" + this.totalHarga + "&status=" + status;
         CallWebPageTask task1 = new CallWebPageTask();
         task1.applicationContext = c.getApplicationContext();
         task1.execute(new String[]{addOrderUrl});
@@ -113,6 +115,7 @@ public class AddOrder{
             String dateResponse = "";
             String dateResult = "";
             response = getRequest(urls[0]);
+            String getLatestDateUrl = URL_GETLATESTDATE + "?nim="+pref.getString("nim",null);
             dateResponse = getRequest(getLatestDateUrl);
             JSONObject j = null;
             try {
@@ -129,12 +132,13 @@ public class AddOrder{
         protected void onPostExecute(String result) {
             //Kondisi timestamp terbaru harus sudah ada(tidak null). Disini bisa dilakukan loop insert ke
             //tabel detilpesanan
-            DatabaseController dController = new DatabaseController();
+            DatabaseController dController = new DatabaseController(menuActivityContext,menuListForFirebase);
             for(Menu menu : menuList){
                 CallWebPageTask1 task2 = new CallWebPageTask1();
                 task2.applicationContext = c.getApplicationContext();
                 result = result.replaceAll(" ","+");
-                String addDetailOrderUrl = URL_ADDDETAILORDER + "?nim=" + nim + "&tglpesan=" + result + "&idmenu=" + menu.id;
+                String acceptableMenu = menu.meal.replaceAll(" ","+");
+                String addDetailOrderUrl = URL_ADDDETAILORDER + "?nim=" + pref.getString("nim",null) + "&tglpesan=" + result + "&namamenu=" + acceptableMenu;
                 task2.execute(new String[]{addDetailOrderUrl});
             }
             dController.getOrderFromMysql();

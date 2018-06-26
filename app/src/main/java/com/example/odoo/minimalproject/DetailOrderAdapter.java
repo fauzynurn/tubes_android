@@ -1,5 +1,6 @@
 package com.example.odoo.minimalproject;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,10 +15,12 @@ import java.util.List;
  */
 
 public class DetailOrderAdapter extends RecyclerView.Adapter<DetailOrderItemHolder> {
-    List<String> menuList = new ArrayList<>();
+    List<Menu> menuList = new ArrayList<>();
+    Context c;
 
-    public DetailOrderAdapter(List<String> menuList){
+    public DetailOrderAdapter(List<Menu> menuList,Context c){
         this.menuList = menuList;
+        this.c = c;
     }
 
     @NonNull
@@ -30,8 +33,8 @@ public class DetailOrderAdapter extends RecyclerView.Adapter<DetailOrderItemHold
 
     @Override
     public void onBindViewHolder(@NonNull DetailOrderItemHolder holder, int position) {
-        String item = menuList.get(position);
-        holder.menuName.setText(item);
+        Menu item = menuList.get(position);
+        holder.menuName.setText(item.meal);
     }
 
     @Override

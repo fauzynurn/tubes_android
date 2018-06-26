@@ -6,13 +6,29 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+    <RelativeLayout
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="33dp"
-        android:src="@drawable/settings" />
+        android:layout_marginTop="29dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/profile_bg" />
+
+        <TextView
+            android:id="@+id/profile_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:fontFamily="@font/nunitobold"
+            android:text="XY"/>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView6"
@@ -46,10 +62,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        fab:button_color="#0BC553"
+        fab:button_colorPressed="#0cd65a"
         fab:image="@drawable/fab_plus_icon"
         fab:image_size="40dp"
-        fab:size="65dp"
-        fab:button_color="#0BC553"
-        fab:button_colorPressed="#0cd65a"/>
+        fab:size="65dp" />
 
 </RelativeLayout>

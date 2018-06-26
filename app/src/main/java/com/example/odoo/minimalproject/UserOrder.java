@@ -10,9 +10,9 @@ public class UserOrder {
     private String dateOrder;
     private String nama;
     private int totalPrice;
-    private List<String> detailOrder = new ArrayList<>();
+    private List<Menu> detailOrder = new ArrayList<>();
 
-    public UserOrder(JSONObject json,List<String> detailOrder){
+    public UserOrder(JSONObject json,List<Menu> detailOrder){
         super();
         try {
             this.dateOrder = json.getString("tglpesan");
@@ -36,7 +36,7 @@ public class UserOrder {
         return totalPrice;
     }
 
-    public List<String> getDetailOrder() {
+    public List<Menu> getDetailOrder() {
         return detailOrder;
     }
 }

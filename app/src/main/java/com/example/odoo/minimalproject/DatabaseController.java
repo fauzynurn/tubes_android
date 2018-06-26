@@ -1,6 +1,7 @@
 package com.example.odoo.minimalproject;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -27,12 +28,21 @@ import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 
 public class DatabaseController {
     public UserOrder userOrder;
+    public List<Menu> firebaseList = new ArrayList<>();
     public static final String URL_GETORDER = "http://laniary-accountabil.000webhostapp.com/android/getOrder.php";
     private DatabaseReference mRef;
     private static final String TAG = "DatabaseController";
+    SharedPreferences pref;
+    Context context;
+
+    public DatabaseController(Context c, List<Menu> mList){
+        context = c;
+        firebaseList = mList;
+        pref = context.getSharedPreferences("MyPref", 0);
+    }
 
     public void getOrderFromMysql(){
-        String getOrderUrl = URL_GETORDER + "?nim=161511049";
+        String getOrderUrl = URL_GETORDER + "?nim="+pref.getString("nim",null);
         CallWebPageTask task1 = new CallWebPageTask();
         task1.execute(new String[]{getOrderUrl});
     }
@@ -53,13 +63,14 @@ public class DatabaseController {
         @Override
         protected void onPostExecute(String result) {
             JSONObject j = null;
-            List<String> mList = new ArrayList<>();
+            List<Menu> mList = new ArrayList<>();
             try {
                 j = new JSONObject(result);
                 Log.i(TAG, "onPostExecute: "+result);
                 JSONArray detailOrderList = j.getJSONArray("detailpesanan");
                 for(int i=0; i<detailOrderList.length(); i++){
-                    mList.add(detailOrderList.getString(i));
+                    Menu menu = new Menu(detailOrderList.getJSONObject(i));
+                    mList.add(menu);
                 }
                 userOrder = new UserOrder(j,mList);
                 writeDataToFirebase();
@@ -104,13 +115,13 @@ public class DatabaseController {
 
     public void writeDataToFirebase(){
         mRef = FirebaseDatabase.getInstance().getReference();
-        mRef.child(userOrder.getNama())
+        mRef.child("orderlist").child(userOrder.getNama())
                 .child("totalharga").setValue(String.valueOf(userOrder.getTotalPrice())+"k");
-        for(int i=0;i<userOrder.getDetailOrder().size();i++){
-            mRef.child(userOrder.getNama())
+        for(int i=0;i<firebaseList.size();i++){
+            mRef.child("orderlist").child(userOrder.getNama())
                     .child("detailpesanan")
                     .child(String.valueOf(i))
-                    .setValue(userOrder.getDetailOrder().get(i));
+                    .setValue(firebaseList.get(i).meal + "." + firebaseList.get(i).jenis);
         }
     }
 }

@@ -61,7 +61,10 @@ public class RecentOrderItemHolder extends RecyclerView.ViewHolder {
             public void onClick(View view) {
                 String encodedDate = rawDate.getText().toString();
                 Intent i = new Intent(context,DetailOrderActivity.class);
-                i.putExtra("encodedDate",encodedDate);
+                Bundle extras = new Bundle();
+                extras.putString("encodedDate",encodedDate);
+                extras.putString("totalPrice",price.getText().toString());
+                i.putExtras(extras);
                 context.startActivity(i);
             }
         });

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="15dp"
+    android:paddingEnd="15dp"
+    android:paddingStart="15dp">
+
+    <RelativeLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_bg">
+
+        <TextView
+            android:id="@+id/title"
+            android:paddingStart="22dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="9dp"
+            android:layout_marginTop="9dp"
+            android:fontFamily="@font/nunitobold"
+            android:text="Do you want to add rice?"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/no_btn"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/title"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:layout_toLeftOf="@id/yes_btn"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="15dp"
+            fancy:fb_defaultColor="#FFFFFF"
+            fancy:fb_focusColor="#636363"
+            fancy:fb_text="No"
+            fancy:fb_textColor="#848484"
+            fancy:fb_textFont="@font/nunitobold"
+            fancy:fb_textSize="18sp" />
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/yes_btn"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_below="@id/title"
+            android:layout_marginTop="5dp"
+            android:paddingBottom="10dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="15dp"
+            fancy:fb_defaultColor="#FFFFFF"
+            android:layout_alignParentEnd="true"
+            fancy:fb_focusColor="#b0f429"
+            fancy:fb_text="Yes"
+            fancy:fb_textColor="#9bd823"
+            fancy:fb_textFont="@font/nunitobold"
+            fancy:fb_textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>
