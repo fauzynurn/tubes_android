@@ -46,7 +46,6 @@ public class AddOrder{
     private Context menuActivityContext;
     FragmentManager fw;
     SharedPreferences pref;
-    String latestDate;
     private static final String TAG = "AddOrder";
 
     public AddOrder(List<Menu> firebaseList, Context c, List<Menu> mList, int totalHarga, FragmentManager fm, Context a) {
