@@ -71,20 +71,23 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
-    </RelativeLayout>
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/checkout_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/total_text"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            fancy:fb_defaultColor="#7ab800"
+            fancy:fb_focusColor="#9bd823"
+            fancy:fb_radius="10dp"
+            fancy:fb_text="Checkout"
+            fancy:fb_textColor="#FFFFFF"
+            fancy:fb_textFont="@font/nunitobold"
+            fancy:fb_textSize="18sp" />
 
-    <mehdi.sakout.fancybuttons.FancyButton
-        android:id="@+id/checkout_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/main_content"
-        android:layout_marginTop="15dp"
-        fancy:fb_defaultColor="#7ab800"
-        fancy:fb_focusColor="#9bd823"
-        fancy:fb_radius="10dp"
-        fancy:fb_text="Checkout"
-        fancy:fb_textColor="#FFFFFF"
-        fancy:fb_textFont="@font/nunitobold"
-        fancy:fb_textSize="18sp" />
+    </RelativeLayout>
 
 </RelativeLayout>

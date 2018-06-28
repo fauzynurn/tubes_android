@@ -71,7 +71,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuItemHolder> {
                     AddRiceDialog ar = new AddRiceDialog(menuList, c, LayoutInflater.from(parent.getContext()), ca, mItemHolder);
                 }
             });
-        } else {
+        } else if((mItemHolder.menuName.getText().toString()).equals("Teh Manis")) {
+            mItemHolder.roundedImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ColdOrHotDrinkDialog cOrHot = new ColdOrHotDrinkDialog(c,ca,mItemHolder);
+                }
+            });
+        }else{
             mItemHolder.roundedImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

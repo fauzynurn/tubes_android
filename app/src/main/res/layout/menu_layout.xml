@@ -5,31 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
-        <RelativeLayout
-            android:id="@+id/search"
-            android:layout_marginTop="15dp"
-            android:layout_below="@id/order_menu_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:src="@drawable/search_bg"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"/>
-
-                <EditText
-                    android:id="@+id/search_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="46dp"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginEnd="67dp"
-                    android:hint="Search"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/white"
-                    android:backgroundTint="#FFC267"/>
-        </RelativeLayout>
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -68,7 +43,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_below="@id/search"
+            android:layout_below="@id/order_menu_text"
             android:id="@+id/tabs"
             android:layout_marginBottom="15dp"
             android:layout_height="38dp">

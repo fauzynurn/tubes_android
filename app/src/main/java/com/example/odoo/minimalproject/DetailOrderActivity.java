@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -46,15 +48,32 @@ public class DetailOrderActivity extends AppCompatActivity {
     String rawDate;
     DetailOrderAdapter dOrderAdapter;
     List<Menu> detailOrderList = new ArrayList<>();
+    ImageView backBtn;
     Intent intent;
     Bundle extras;
     SharedPreferences pref;
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(DetailOrderActivity.this, HomeActivity.class);
+        startActivity(i);
+        finish();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detail_order_layout);
         totalPrice = findViewById(R.id.price);
+        backBtn = findViewById(R.id.back_btn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(DetailOrderActivity.this, HomeActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
         numOfItems = findViewById(R.id.num_of_items);
         date = findViewById(R.id.date_data);
         time = findViewById(R.id.time_data);

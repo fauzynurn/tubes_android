@@ -47,11 +47,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartItemHolder> {
         menuListForFirebase.add(menu);
         notifyItemInserted(index);
         if(findFood()){
-            int indexMenu = findMenu("Teh Manis");
-            if(indexMenu != -1){
-                cartList.get(indexMenu).price = 1;
-                cartList.get(indexMenu).concatedPrice = "1k";
-            }
+            changeTehManisPrice();
         }
     }
 
@@ -75,7 +71,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartItemHolder> {
         }
         return false;
     }
-
+    public void changeTehManisPrice(){
+        for(Menu menu : cartList){
+            if(menu.meal.equals("Teh Manis hangat") || menu.meal.equals("Teh Manis dingin")){
+                menu.price = 1;
+                menu.concatedPrice = "1k";
+            }
+        }
+    }
     public int findMenu(String x){
         for(int i = 0; i < cartList.size(); i++){
             if(cartList.get(i).meal.equals(x)){

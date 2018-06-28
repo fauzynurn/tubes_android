@@ -67,7 +67,6 @@ public class MenuActivity extends AppCompatActivity{
         if (!isThemed) {
             getWindow().setStatusBarColor(Color.parseColor("#47D4AE"));
         }
-        search = findViewById(R.id.search_edit_text);
         cAdapter = new CartAdapter(myCart);
         cartIcon = findViewById(R.id.cart_icon);
         cartIcon.setOnClickListener(new View.OnClickListener() {
